@@ -1,0 +1,74 @@
+#N canvas 13 69 1493 815 12;
+#X obj 231 432 netsend -u -b;
+#X obj 231 353 loadbang;
+#X obj 306 353 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 683 229 netreceive -u -b;
+#X obj 683 160 loadbang;
+#X obj 760 160 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 683 260 oscparse;
+#X obj 138 290 list prepend send;
+#X obj 782 322 print;
+#X obj 138 326 list trim;
+#X obj 683 285 list trim;
+#X msg 683 195 listen 0 \, listen 7563;
+#X msg 231 391 disconnect \, connect 192.168.1.186 7562;
+#X obj 138 258 oscformat /trigger;
+#X floatatom 138 226 5 0 1 0 - - - 0;
+#X msg 270 199 set \$1;
+#X obj 273 175 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 #fcfcfc
+#000000 #000000 0 1;
+#X obj 138 177 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 686 472 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 #fcfcfc
+#000000 #000000 0 1;
+#X obj 829 474 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 #fcfcfc
+#000000 #000000 0 1;
+#X obj 683 322 route touch;
+#X obj 683 362 unpack;
+#X msg 829 410 1;
+#X obj 829 447 -;
+#X obj 269 125 loadbang;
+#X msg 270 149 1;
+#X text 417 173 <-- 1 choose amplitude;
+#X text 682 111 RECEIVE;
+#X text 132 117 SEND;
+#X text 826 323 prints raw OSC messages received;
+#X text -14 174 2 trigger sound -->;
+#X text 850 192 0 make sure this matches the phone's local remote port
+;
+#X text 333 355 0 make sure these match the phone's local ip and port
+, f 29;
+#X text 700 433 touch x/y pos (normalized), f 15;
+#X text 23 18 This Pd patch is designed to communicate with the project
+LDSP/examples/Communication/OSC or LDSP/examples/PureData/OSC, f 120
+;
+#X text 24 38 It triggers a blip with '/trigger amplitude' and receives
+the x/y normalized location of the first touch as '/touch x y', f
+120;
+#X connect 1 0 12 0;
+#X connect 2 0 12 0;
+#X connect 3 0 6 0;
+#X connect 4 0 11 0;
+#X connect 5 0 11 0;
+#X connect 6 0 10 0;
+#X connect 7 0 9 0;
+#X connect 9 0 0 0;
+#X connect 10 0 20 0;
+#X connect 10 0 8 0;
+#X connect 11 0 3 0;
+#X connect 12 0 0 0;
+#X connect 13 0 7 0;
+#X connect 14 0 13 0;
+#X connect 15 0 14 0;
+#X connect 16 0 15 0;
+#X connect 17 0 14 0;
+#X connect 20 0 21 0;
+#X connect 21 0 18 0;
+#X connect 21 1 23 1;
+#X connect 21 1 22 0;
+#X connect 22 0 23 0;
+#X connect 23 0 19 0;
+#X connect 24 0 25 0;
+#X connect 25 0 16 0;
